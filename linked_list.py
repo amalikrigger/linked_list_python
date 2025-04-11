@@ -125,6 +125,17 @@ class LinkedList:
             current = next_node
         self.__head = prev
 
+    def has_cycle(self):
+        fast = self.__head
+        slow = self.__head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
+        return False
+
+
     def print(self):
         current_node = self.__head
         elements = []

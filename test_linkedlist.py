@@ -1,5 +1,6 @@
 import unittest
 from linked_list import LinkedList
+from node import  Node
 
 class TestLinkedList(unittest.TestCase):
 
@@ -203,6 +204,35 @@ class TestLinkedList(unittest.TestCase):
         self.list.reverse_list()
         self.list.reverse_list()
         self.assertEqual(self.list.print(), 'a -> b -> c -> d -> None')
+
+    def test_has_cycle_empty_list(self):
+        self.assertFalse(self.list.has_cycle())
+
+    def test_has_cycle_single_node_no_cycle(self):
+        self.list.append(1)
+        self.assertFalse(self.list.has_cycle())
+
+    def test_has_cycle_single_node_with_cycle(self):
+        node = Node(1)
+        node.next = node  # Creates a cycle
+        self.list._LinkedList__head = node
+        self.list._LinkedList__size = 1
+        self.assertTrue(self.list.has_cycle())
+
+    def test_has_cycle_multiple_nodes_no_cycle(self):
+        for val in [1, 2, 3, 4]:
+            self.list.append(val)
+        self.assertFalse(self.list.has_cycle())
+
+    def test_has_cycle_multiple_nodes_with_cycle(self):
+        nodes = [Node(i) for i in range(5)]
+        for i in range(4):
+            nodes[i].next = nodes[i + 1]
+        nodes[4].next = nodes[1]  # Creates a cycle linking last node back to node at index 1
+        self.list._LinkedList__head = nodes[0]
+        self.list._LinkedList__size = 5
+        self.assertTrue(self.list.has_cycle())
+
 
 if __name__ == '__main__':
     unittest.main()
