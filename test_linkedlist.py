@@ -167,6 +167,42 @@ class TestLinkedList(unittest.TestCase):
         self.list.prepend('start')
         self.assertEqual(self.list.print(), 'start -> middle -> 4 -> None')
 
+    def test_reverse_list(self):
+        self.list.append(1)
+        self.list.append(2)
+        self.list.append(3)
+        self.list.reverse_list()
+        self.assertEqual(self.list.index_of(3), 0)
+        self.assertEqual(self.list.index_of(1), 2)
+
+    def test_reverse_list_two_elements(self):
+        self.list.append(1)
+        self.list.append(2)
+        self.list.reverse_list()
+        self.assertEqual(self.list.print(), '2 -> 1 -> None')
+
+    def test_reverse_list_multiple_elements(self):
+        for val in range(1, 6):  # Creates 1->2->3->4->5
+            self.list.append(val)
+        self.list.reverse_list()
+        self.assertEqual(self.list.print(), '5 -> 4 -> 3 -> 2 -> 1 -> None')
+
+    def test_reverse_list_single_element(self):
+        self.list.append(42)
+        self.list.reverse_list()
+        self.assertEqual(self.list.print(), '42 -> None')
+
+    def test_reverse_list_empty_list(self):
+        self.list.reverse_list()
+        self.assertEqual(self.list.print(), ' -> None')
+
+    def test_reverse_list_twice_original_order(self):
+        values = ['a', 'b', 'c', 'd']
+        for val in values:
+            self.list.append(val)
+        self.list.reverse_list()
+        self.list.reverse_list()
+        self.assertEqual(self.list.print(), 'a -> b -> c -> d -> None')
 
 if __name__ == '__main__':
     unittest.main()

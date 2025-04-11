@@ -115,6 +115,16 @@ class LinkedList:
             start += 1
             end -= 1
 
+    def reverse_list(self):
+        current = self.__head
+        prev = None
+        while current:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+        self.__head = prev
+
     def print(self):
         current_node = self.__head
         elements = []
