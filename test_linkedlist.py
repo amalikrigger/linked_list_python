@@ -71,7 +71,7 @@ class TestLinkedList(unittest.TestCase):
     def test_clear(self):
         self.list.append(1)
         self.list.append(2)
-        self.list.clear(None)
+        self.list.clear()
         self.assertEqual(self.list.length(), 0)
         self.assertFalse(self.list.contains(1))
 
@@ -105,7 +105,7 @@ class TestLinkedList(unittest.TestCase):
 
     def test_print_after_clear(self):
         self.list.append(5)
-        self.list.clear(None)
+        self.list.clear()
         self.assertEqual(self.list.print(), ' -> None')
 
     def test_print_after_reverse(self):
@@ -150,13 +150,13 @@ class TestLinkedList(unittest.TestCase):
 
     def test_append_after_clear(self):
         self.list.append(1)
-        self.list.clear(None)
+        self.list.clear()
         self.list.append(2)
         self.assertEqual(self.list.print(), '2 -> None')
 
     def test_prepend_after_clear(self):
         self.list.append(1)
-        self.list.clear(None)
+        self.list.clear()
         self.list.prepend(0)
         self.assertEqual(self.list.print(), '0 -> None')
 
