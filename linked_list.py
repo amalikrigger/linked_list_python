@@ -85,29 +85,6 @@ class LinkedList:
         return self.__size
 
     def reverse(self):
-        if self.__head is None or self.__size <= 1:
-            return
-        start = 0
-        end = self.__size - 1
-        start_node = self.__head
-
-        while start < end:
-            i = 0
-            current_node = self.__head
-            while i < self.__size:
-                if i == start:
-                    start_node = current_node
-                elif i == end:
-                    break
-                current_node = current_node.next
-                i += 1
-            temp = start_node.value
-            start_node.value = current_node.value
-            current_node.value = temp
-            start += 1
-            end -= 1
-
-    def reverse_list(self):
         current = self.__head
         prev = None
         while current:
